@@ -117,12 +117,16 @@ static int mirModToGLFWMod(uint32_t mods)
 
     if (mods & mir_input_event_modifier_alt)
         publicMods |= GLFW_MOD_ALT;
-    else if (mods & mir_input_event_modifier_shift)
+    if (mods & mir_input_event_modifier_shift)
         publicMods |= GLFW_MOD_SHIFT;
-    else if (mods & mir_input_event_modifier_ctrl)
+    if (mods & mir_input_event_modifier_ctrl)
         publicMods |= GLFW_MOD_CONTROL;
-    else if (mods & mir_input_event_modifier_meta)
+    if (mods & mir_input_event_modifier_meta)
         publicMods |= GLFW_MOD_SUPER;
+    if (mods & mir_input_event_modifier_caps_lock)
+        publicMods |= GLFW_MOD_CAPS_LOCK;
+    if (mods & mir_input_event_modifier_num_lock)
+        publicMods |= GLFW_MOD_NUM_LOCK;
 
     return publicMods;
 }
