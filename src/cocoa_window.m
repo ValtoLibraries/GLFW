@@ -582,6 +582,9 @@ static const NSRange kEmptyRange = { NSNotFound, 0 };
         window->ns.xscale = xscale;
         window->ns.yscale = yscale;
         _glfwInputWindowContentScale(window, xscale, yscale);
+
+        if (window->ns.layer)
+            [window->ns.layer setContentsScale:[window->ns.object backingScaleFactor]];
     }
 }
 
@@ -872,7 +875,7 @@ static const NSRange kEmptyRange = { NSNotFound, 0 };
 
 - (void)loadMainMenu
 {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 100800
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1080
     [[NSBundle mainBundle] loadNibNamed:@"MainMenu"
                                   owner:NSApp
                         topLevelObjects:&nibObjects];
@@ -1871,6 +1874,7 @@ VkResult _glfwPlatformCreateWindowSurface(VkInstance instance,
         return VK_ERROR_EXTENSION_NOT_PRESENT;
     }
 
+    [window->ns.layer setContentsScale:[window->ns.object backingScaleFactor]];
     [window->ns.view setWantsLayer:YES];
 
     memset(&sci, 0, sizeof(sci));
