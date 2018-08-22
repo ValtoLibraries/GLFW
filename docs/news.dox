@@ -4,6 +4,12 @@
 
 @section news_33 Release notes for 3.3
 
+@subsection news_33_focusonshow GLFW_FOCUS_ON_SHOW window hint and attribute
+
+GLFW now supports the [GLFW_FOCUS_ON_SHOW](@ref GLFW_DECORATED_hint) window hint
+and attribute for controlling input focus when calling @ref glfwShowWindow
+
+@see @ref window_hide
 
 @subsection news_33_geterror Error query
 
@@ -65,7 +71,7 @@ between the current DPI and the platform's default DPI, with @ref
 glfwGetWindowContentScale and @ref glfwGetMonitorContentScale.
 
 Changes of the content scale of a window can be received with the window content
-scale callback, set with @ref glfwSetWindowCloseCallback.
+scale callback, set with @ref glfwSetWindowContentScaleCallback.
 
 @see @ref window_scale
 
